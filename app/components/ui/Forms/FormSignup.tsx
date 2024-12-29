@@ -44,8 +44,19 @@ const FormSignup = () => {
     },
   });
 
-  const onSubmit = (data: SignupSchema) => {
-    console.log(data);
+  const onSubmit = async (data: SignupSchema) => {
+    if (data.avatar) {
+      const formData = new FormData();
+      formData.append("avatar", data.avatar[0]);
+      formData.append("upload_preset", "au6wplfw");
+      try {
+        const response = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_URL!, {
+          method: "POST",
+          body: formData,
+        });
+        console.log(await response.json());
+      } catch (error) {}
+    }
   };
 
   return (

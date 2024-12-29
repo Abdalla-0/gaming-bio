@@ -9,7 +9,6 @@ export function FileUploadDemo({ name }: { name: string }) {
   const handleFileUpload = (files: File[]) => {
     setFiles(files);
     form.setValue(name, files);
-    console.log(files, form.getValues(name));
   };
 
   return (
